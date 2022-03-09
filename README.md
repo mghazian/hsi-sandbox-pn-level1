@@ -27,30 +27,6 @@ print("Python " * 3) # bruh
 
 ![app1](./images/1.png)
 
-## 10. Math Module
-### Source code
-
-```python
-# 1:12:11 Math Module
-import math
-
-number = 5.8
-number = round(number)
-print(number)
-
-number = 5.2
-number = math.ceil(number)
-print(number)
-
-number = 5.9
-number = math.floor(number)
-print(number)
-```
-
-### Output
-
-![app10](./images/10.png)
-
 ## 2. Variabel dan Tipe Data
 ### Source code
 
@@ -232,6 +208,30 @@ print(number)
 ### Output
 
 ![app9](./images/9.png)
+
+## 10. Math Module
+### Source code
+
+```python
+# 1:12:11 Math Module
+import math
+
+number = 5.8
+number = round(number)
+print(number)
+
+number = 5.2
+number = math.ceil(number)
+print(number)
+
+number = 5.9
+number = math.floor(number)
+print(number)
+```
+
+### Output
+
+![app10](./images/10.png)
 
 ## 11. Percabangan If
 ### Source code
