@@ -7,6 +7,10 @@ class Choice(object):
         self.content = content
 
     def __hash__(self):
+        """
+        We do not want the class' hash to be its memory location. Different
+        instance should be the same if and only if their content is the same
+        """
         return hash(self.content)
 
     def __eq__(self, __o):
@@ -42,6 +46,9 @@ class Question(object):
         random.shuffle(self.choices)
 
     def present(self):
+        """
+        Show the question and its choices with proper pretty formatting
+        """
         print(f"{self.query}")
         for i in range(self.choices_count):
             choice = self.choices[i]
@@ -49,6 +56,10 @@ class Question(object):
         print("")
 
     def explain(self, answer):
+        """
+        Show the question and its choices with proper pretty formatting. Also
+        show the taker's answer and the correct answer
+        """
         print(f"{self.query}")
         for i in range(self.choices_count):
             choice = self.choices[i]
@@ -57,6 +68,10 @@ class Question(object):
 
 class QuizApp(object):
     def __init__(self, filename = None):
+        """
+        It's recommended to provide the path to json file containing the
+        content of the quiz right when the class is instantiated
+        """
         self._questions = []
         self.title = ""
         self.chapter = ""
@@ -66,6 +81,9 @@ class QuizApp(object):
             self.load(filename)
 
     def load(self, filename):
+        """
+        Retrieve the quiz's questions and answers from a json file
+        """
         with open(filename, 'r') as exam:
             exam_json = json.load(exam)
 
@@ -76,6 +94,9 @@ class QuizApp(object):
             self._questions = list(map(lambda entry: Question(entry['query'], entry['choices'], entry['answer']), exam_json['questions']))
 
     def _select_question(self, quantity):
+        """
+        Randomly select questions from the loaded pool as many as `quantity`
+        """
         return list(map(lambda question: { 'question': question, 'idx_answer': None }, random.sample(self._questions, quantity)))
 
     def _receive_answer(self):
@@ -85,6 +106,11 @@ class QuizApp(object):
             return -1
 
     def _ask(self, question):
+        """
+        A routine for running the complete flow of answering a question i.e.
+        1. Show the question
+        2. Accept the answer
+        """
         question.shuffle_choice()
         question.present()
 
@@ -97,6 +123,9 @@ class QuizApp(object):
         return answer - 1
 
     def start(self, quantity):
+        """
+        Use this to begin the quiz
+        """
         current_attempt = self._select_question(quantity)
 
         print(f"Evaluasi Harian #{self.no} {self.chapter} - {self.title}")
