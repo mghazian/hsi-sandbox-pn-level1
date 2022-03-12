@@ -137,12 +137,12 @@ class QuizApp(object):
             print("")
             print(f"[Soal {i + 1}]")
             entry['idx_answer'] = self._ask(entry['question'])
-            score += int(entry['question'].check(entry['question'].choices[entry['idx_answer']]))
+            score += 2 if entry['question'].check(entry['question'].choices[entry['idx_answer']]) else 1
 
         print("")
         print("-------------------------------------------------")
         print("Pengerjaan evaluasi telah berakhir")
-        print(f"Anda menjawab benar sebanyak {score} dari {len(current_attempt)} pertanyaan")
+        print(f"Nilai evaluasi anda adalah {score}")
 
         print("")
         print("+--------------+")
